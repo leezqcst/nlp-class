@@ -1,7 +1,7 @@
 #mine
 #Email:shruthika62129@gmail.com
 import ply.lex as lex
-import re
+import csv
 from collections import defaultdict
 
 f = open('Dataset9.txt')
@@ -59,7 +59,8 @@ def t_error(t):
 	t.lexer.skip(1)
 	
 lexer = lex.lex()
-
+soln = open('twitter.csv','wb')
+writer = csv.writer(soln, delimiter=',')
 for i,line in enumerate(open('Dataset9.txt')):
 	line = line.strip()
 	if i%2 == 0:
@@ -68,8 +69,5 @@ for i,line in enumerate(open('Dataset9.txt')):
 	lexer.input(line)
 	lexer.token()
 	out = [d['hashtag'], d['retweet'], d['url'], d['name'], d['slang'], d['emoticon']]
-	if(d['slang']):
-		print line
-		print d['slang']
-	output.append(out)
+	writer.writerow(out)
 	d = defaultdict(int)
