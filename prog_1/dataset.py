@@ -52,7 +52,7 @@ def t_SLANG(t):
         d['slang'] += 1
 
 def t_EMOTICON(t):
-    r'[\:;\-\(\)DPpd]{2,}'
+    r'[\:;\-\(\)DPpdoO\|]{2,}|<3'
     d['emoticon'] += 1
 
 def t_error(t):
