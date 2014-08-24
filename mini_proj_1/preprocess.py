@@ -66,7 +66,16 @@ def normalize_query(q):
 			normalized_q.append(stemmer.stem(word))
 	return normalized_q
 
-def normalized_and():
+def normalize_query_and(q):
+	q = wt(q)
+	normalized_q = []
+	for word in q:
+		if word not in punctuation:
+			normalized_q.append(stemmer.stem(word))
+	return normalized_q
+
+
+def normalize_and():
 	processed_docs = []
 	for doc in content:
 		doc = wt(doc)
@@ -75,6 +84,14 @@ def normalized_and():
 			if word not in punctuation:
 				sentence.append(word)
 		processed_docs.append(sentence)
+
+def query_and():
+	query = raw_input("Enter query : ")
+	if(query == ""):
+		print "No query recieved"
+		sys.exit()
+	query = normalize_query_and(query)
+	return query
 
 def query():
 	query = raw_input("Enter query : ")
@@ -95,6 +112,20 @@ def rank(q):
 	ranking.sort(key = lambda x : x[0], reverse = True)
 	return ranking[:10]
 
+def rank_and(q):
+	ranking = []
+	for i,doc in enumerate(processed_docs):
+		if([x for x in q if x in doc].sort() == q.sort()):
+			print q,doc
+			rank = 0
+			for word in q:
+				if word in doc:
+					rank += tfs[i][word] * idfs[word]
+			ranking.append((rank,i))
+	ranking.sort(key = lambda x : x[0], reverse = True)
+	return ranking[:10]
+
+
 def logical_or():
 	normalize()
 	tf_calc()
@@ -109,8 +140,17 @@ def logical_or():
 		print str(i+1)+"    "+str(r[1])+"    "+content[r[1]]
 
 def logical_and():
+	normalize_and()
 	tf_calc()
 	idf_calc()
+	q = query_and()
+	ranks = rank_and(q)
+	if ( len(ranks)==0 or ranks[0][0] == 0):
+		print "query terms not found"
+		sys.exit()
+	print "Rank    Index    Document"
+	for i,r in enumerate(ranks):
+		print str(i+1)+"    "+str(r[1])+"    "+content[r[1]]
 
 def main():
 	logical_or()
