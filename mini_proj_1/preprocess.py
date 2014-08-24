@@ -3,23 +3,36 @@ from nltk.tokenize import word_tokenize as wt
 from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 from collections import defaultdict
+from math import log
 
 fp = open("cri.txt")
 content = eval(fp.read())
 docs = []
 processed_docs = []
 stemmer = PorterStemmer()
-idfs = []
+idfs = defaultdict(int)
 tfs = []
 
+def remove_duplicates(seq):
+    seen = set()
+    seen_add = seen.add
+    return [ x for x in seq if not (x in seen or seen_add(x))]
+
 def idf_calc():
-	pass
+	for doc in processed_docs:
+		doc = remove_duplicates(doc)
+		for word in doc:
+			idfs[word] += 1
+	for key,value in idfs.iteritems():
+		idfs[key] = log((1.0*len(content))/value)
 
 def tf_calc():
 	for doc in processed_docs:
 		tf = defaultdict(int)
 		for word in doc:
 			tf[word] += 1
+		for key,value in tf.iteritems():
+			tf[key] = (1.0*value)/len(doc)
 		tfs.append(tf)
 
 def normalize():
@@ -37,7 +50,8 @@ def normalize():
 def main():
 	normalize()
 	tf_calc()
-	print tfs
+	idf_calc()
+	print idfs
 
 if __name__ == '__main__':
 	main()
