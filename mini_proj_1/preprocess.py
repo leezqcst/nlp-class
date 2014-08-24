@@ -98,7 +98,7 @@ def normalize_and():
         sentence = []
         for word in doc:
             if word not in punctuation:
-                sentence.append(word)
+                sentence.append(stemmer.stem(word))
         processed_docs.append(sentence)
 
 def query_and():
@@ -132,6 +132,7 @@ def rank_and(q):
     ranking = []
     for i, doc in enumerate(processed_docs):
         if(sorted([x for x in q if x in doc]) == sorted(q)):
+            print doc
             rank = 0
             for word in q:
                 if word in doc:
