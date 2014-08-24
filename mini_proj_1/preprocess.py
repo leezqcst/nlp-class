@@ -1,11 +1,15 @@
 import re
-
+from nltk.tokenize import word_tokenize as wt
 fp = open("cri.txt")
-
 content = eval(fp.read())
-op = open("docs","w")
+docs = []
+processed_docs = []
 for doc in content:
-	op.write(doc)
-	op.write("\n")
-op.close()
-fp.close()
+	docs.append(doc.lower())
+
+for doc in docs:
+	processed_docs.append(wt(doc))
+
+print processed_docs
+
+
