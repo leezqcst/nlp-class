@@ -132,7 +132,6 @@ def rank_and(q):
     ranking = []
     for i, doc in enumerate(processed_docs):
         if(sorted([x for x in q if x in doc]) == sorted(q)):
-            print doc
             rank = 0
             for word in q:
                 if word in doc:
