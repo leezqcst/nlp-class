@@ -4,7 +4,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+*.csv
 # Distribution / packaging
 .Python
 env/
@@ -52,3 +52,6 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# Custom
+*.csv
+*.txt
