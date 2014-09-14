@@ -2,7 +2,7 @@ import nltk
 from math import log
 from collections import defaultdict
 import re
-words = nltk.word_tokenize("~ "+open("corpus1.txt").read().lower()+" ~")
+words = nltk.word_tokenize("~ "+open("corpus2.txt").read().lower()+" ~")
 count = defaultdict(int)
 count_bigram = defaultdict(int)
 

@@ -3,7 +3,7 @@ from collections import defaultdict
 import re
 from math import log
 
-words = nltk.word_tokenize(open("corpus1.txt").read().lower())
+words = nltk.word_tokenize(open("corpus2.txt").read().lower())
 uni = defaultdict(int)
 
 punctuation = [',', '.', '?', '!', ':', ';', '\'', '\"','@', '=', '&' ]
