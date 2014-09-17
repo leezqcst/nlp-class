@@ -54,4 +54,5 @@ docs/_build/
 
 # Custom
 *.csv
-
+part2/deliverables/
+*.zip
