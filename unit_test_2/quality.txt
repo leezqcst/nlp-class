@@ -1,0 +1,10 @@
+c1_test_vq.txt : 2.88888888889
+c2_test_vq.txt : 1.14444444444
+c3_test_vq.txt : 1.92222222222
+c4_test_vq.txt : 1.27777777778
+c5_test_vq.txt : 1.4
+c6_test_vq.txt : 1.6
+c7_test_vq.txt : -0.677777777778
+c8_test_vq.txt : 0.411111111111
+c9_test_vq.txt : 1.77777777778
+c10_test_vq.txt : 1.55555555556

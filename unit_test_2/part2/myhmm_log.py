@@ -352,57 +352,50 @@ def generate_sequence(file_name, seq_size):
             if(len(seq) == seq_size):
                 seq_total.append(seq)
                 seq = []
-        seq_total.append(seq)
     return seq_total
 
 
 if __name__ == '__main__':
     pp = pprint.PrettyPrinter(indent = 4)
     json_file = "debate_initial.txt"
-    model_silent = MyHmmLog(json_file)
-    model_single = MyHmmLog(json_file)
-    model_multi = MyHmmLog(json_file)
+    model_modi = MyHmmLog(json_file)
+    model_arnab = MyHmmLog(json_file)
+    model_other = MyHmmLog(json_file)
     
-    single_seq = generate_sequence("single_trg_vq.txt", 10)
-    print len(single_seq)
-    multi_seq = generate_sequence("multi_trg_vq.txt", 10)
-    silent_seq = generate_sequence("silent_trg_vq.txt", 10)
+    modi_seq = generate_sequence("modi1_trg_vq.txt", 10)
+    other_seq = generate_sequence("music_trg_vq.txt", 10)
+    arnab_seq = generate_sequence("arnab1_trg_vq.txt", 10)
     print "training models"
-    model_single.forward_backward_multi(single_seq)
-    model_silent.forward_backward_multi(silent_seq)
-    model_multi.forward_backward_multi(multi_seq)
+    model_modi.forward_backward_multi(modi_seq)
+    model_other.forward_backward_multi(other_seq)
+    model_arnab.forward_backward_multi(arnab_seq)
     print "testing models"
-    quality_output_file = open("quality.txt","w")
-    for i in range(1,11):
-        openfile = "c"+str(i)+"_test_vq.txt"
-        out_file = open("c"+str(i)+"output.txt","w")
-        print openfile
-        test_seq = generate_sequence(openfile, 10)
-        print len(test_seq)
-        single = 0
-        silent = 0
-        multi = 0
-        for j,seq in enumerate(test_seq):
-            if(j%20 == 0):
-                out_file.write("\n")
-            p_single = model_single.forward(seq)
-            p_silent = model_silent.forward(seq)
-            p_multi = model_multi.forward(seq)
-            if(p_single > p_silent and p_single > p_multi):
-                out_file.write("single  ")
-                single += 1
-            elif(p_silent > p_single and p_silent > p_multi):
-                out_file.write("silent  ")
-                silent += 1
-            elif(p_multi > p_silent and p_multi > p_single):
-                out_file.write("multi  ")
-                multi += 1
-        out_file.close()
-        quality_index = 10*(single+silent) - 10 * multi
-        print single,silent,multi,sum([single,silent,multi])
-        quality_output_file.write("c"+str(i)+"_test_vq.txt : "+str(float(quality_index)/(single+silent+multi))+"\n")
 
-    quality_output_file.close()
+    for openfile in ['../c7_test_vq.txt']:
+        out_file = open(openfile[:-3]+"_out.txt","w")
+        test_seq = generate_sequence(openfile, 10)
+        modi = 0
+        arnab = 0
+        other = 0
+        sec = 1
+        for i,seq in enumerate(test_seq):
+            if(i%20 == 0):
+                out_file.write("\n")
+                out_file.write(str(sec)+"    ")
+                sec+=1
+            p_modi = model_modi.forward(seq)
+            p_arnab = model_arnab.forward(seq)
+            p_other = model_other.forward(seq)
+            if(p_modi > p_arnab and p_modi > p_other):
+                out_file.write("modi  ")
+                modi += 1
+            elif(p_arnab > p_modi and p_arnab > p_other):
+                out_file.write("arnab  ")
+                arnab += 1
+            elif(p_other > p_arnab and p_other > p_modi):
+                out_file.write("other  ")
+                other += 1
+        out_file.close()
 
 
 
