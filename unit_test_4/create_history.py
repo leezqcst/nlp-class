@@ -13,7 +13,9 @@ for x in json_data['root']:
         for z in range(len(updates)):
             if (updates[z]['tag'] == 'Model'):
                 updates[z]['tag'] = 'Family'
-            if (updates[z]['tag'] != 'Family' or updates[z]['tag'] != 'Org'):
+            if (updates[z]['tag'] == 'Family' or updates[z]['tag'] == 'Org'):
+                pass
+            else:
                 updates[z]['tag'] = 'Other'
 
             if (z == 0):
@@ -25,3 +27,5 @@ for x in json_data['root']:
 
 pprint(json_data['root'][0]['data'][0]['updates'])
 pprint(history_list[0:6])
+
+print len(history_list)
