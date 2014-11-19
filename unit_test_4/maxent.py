@@ -1,29 +1,6 @@
 import json
 import random
-
-def create_dataset():
-	f = open("all_data.json")
-	json_data = json.load(f)
-
-	history_list = []
-
-	for x in json_data['root']:
-	    data = x['data']
-	    for y in data:
-	        updates = y['updates']
-	        for z in range(len(updates)):
-	            if (updates[z]['tag'] == 'Model'):
-	                updates[z]['tag'] = 'Family'
-	            if (updates[z]['tag'] != 'Family' or updates[z]['tag'] != 'Org'):
-	                updates[z]['tag'] = 'Other'
-
-	            if (z == 0):
-	                history_list.append([None, None, updates[z]['word'], z])
-	            elif (z == 1):
-	                history_list.append([None, updates[z -1]['tag'], updates[z]['word'], z])
-	            else:
-	                history_list.append([updates[z - 2]['tag'], updates[z - 1]['tag'], updates[z]['word'], z])
-	return history_list
+from create_history import get_tuples
 
 def f1(x,y):
 	return random.randrange(2)
@@ -62,17 +39,27 @@ class MyMaxEnt(object):
 	"""docstring for MyMaxEnt"""
 	def __init__(self, dataset, features):
 		super(MyMaxEnt, self).__init__()
-		self.train = []
-		self.test = []
+		self.train_data = []
+		self.test_data = []
+		self.train_f = []
+		self.model = [0 for i in range(10)]
+		# self.test_f = []
+		
 		for i in range(50):
-			self.train.append(dataset[random.randrange(len(dataset))])
-			self.test.append(dataset[random.randrange(len(dataset))])
-		# print self.train
-		# print self.test
-		print dataset
+			self.train_data.append(dataset[random.randrange(len(dataset))])
+			self.test_data.append(dataset[random.randrange(len(dataset))])
+		
+		for tup in self.train_data:
+			feature_vector = []
+			for fun in features:
+				feature_vector.append(fun(tup, tup[3]))
+			self.train_f.append(feature_vector)
+		print self.train_f
+
+	
 
 if __name__ == '__main__':
-	MyMaxEnt(create_dataset())
+	MyMaxEnt(get_tuples(), [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10])
 
 		
 
