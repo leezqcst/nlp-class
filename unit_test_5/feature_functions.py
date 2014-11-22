@@ -10,7 +10,6 @@ import json
 import numpy
 import pickle
 import datetime
-import random
 
 from MyMaxEnt import MyMaxEnt
 
@@ -26,58 +25,212 @@ class FeatureFunctions(object):
         
     
     def f1(self, h, tag):
-        return random.randrange(2)
-        
+        if (tag == 'Version' and h[1] == 'OS'):
+            return 1
+        else:
+            return 0
+
     
     def f2(self, h, tag):
-        return random.randrange(2)
+        if (tag == 'Version' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
 
-    
     def f3(self, h, tag):
-        return random.randrange(2)
+        if (tag == 'Phone' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
 
-
-    
     def f4(self, h, tag):
-       return random.randrange(2)
+        if (tag == 'Org' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
 
-    
     def f5(self, h, tag):
-       return random.randrange(2)
+        if (tag == 'Date' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
 
-    
     def f6(self, h, tag):
-        return random.randrange(2)
+        if (tag == 'Location' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
 
-   
     def f7(self, h, tag):
-        return random.randrange(2)
-
-
-    
+        if (tag == 'Size' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
     def f8(self, h, tag):
-       return random.randrange(2)
-
-    
+        if (tag == 'App' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
     def f9(self, h, tag):
-        return random.randrange(2)
-   
+        if (tag == 'Family' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
     def f10(self, h, tag):
-       return random.randrange(2)
-
-    
+        if (tag == 'Family' and h[1] == 'Org'):
+            return 1
+        else:
+            return 0
     def f11(self, h, tag):
-        return random.randrange(2)
+        if (tag == 'Price' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
 
-   
     def f12(self, h, tag):
-        return random.randrange(2)
+        if (tag == 'Phone' and h[1] == 'Org'):
+            return 1
+        else:
+            return 0
 
-
-   
     def f13(self, h, tag):
-        return random.randrange(2)
-        
+        if (tag == 'Phone' and h[1] == 'OS'):
+            return 1
+        else:
+            return 0
+
+    def f14(self, h, tag):
+        if (tag == 'App' and h[1] == 'App'):
+            return 1
+        else:
+            return 0
+
+    def f15(self, h, tag):
+        if (tag == 'Price' and h[1] == 'Price'):
+            return 1
+        else:
+            return 0
+
+    def f16(self, h, tag):
+        if (tag == 'Version' and h[1] == 'OS'):
+            return 1
+        else:
+            return 0
+
+    def f17(self, h, tag):
+        if (tag == 'Version' and h[1] == 'OS'):
+            return 1
+        else:
+            return 0
+
+    def f18(self, h, tag):
+        if (tag == 'Family' and h[0] == 'Org'):
+            return 1
+        else:
+            return 0
+    def f19(self, h, tag):
+        if (tag == 'Model' and h[0] == 'Org'):
+            return 1
+        else:
+            return 0
+
+    def f20(self, h, tag):
+        if (tag == 'Other' and h[0] == 'Other'):
+            return 1
+        else:
+            return 0
+
+    def f21(self, h, tag):
+        if (tag == 'Other' and h[1] == 'Other'):
+            return 1
+        else:
+            return 0
+
+    def f22(self, h, tag):
+        if (tag == 'Version' and h[0] == 'Org'):
+            return 1
+        else:
+            return 0
+
+    def f23(self, h, tag):
+        if (tag == 'Other' and h[0] == 'Date'):
+            return 1
+        else:
+            return 0
+
+    def f24(self, h, tag):
+        if (tag == 'Other' and h[0] == 'Place'):
+            return 1
+        else:
+            return 0
+
+    def f25(self, h, tag):
+        if (tag == 'Size' and h[0] == 'Other'):
+            return 1
+        else:
+            return 0
+
+    def f26(self, h, tag):
+        if (tag == 'Price' and h[0] == 'Other'):
+            return 1
+        else:
+            return 0
+
+    def f27(self, h, tag):
+    if (tag == 'Location' and h[0] == 'Other'):
+        return 1
+    else:
+        return 0
+
+    def f28(self, h, tag):
+        if (tag == 'Price' and h[0] == 'Date'):
+            return 1
+        else:
+            return 0
+
+    def f29(self, h, tag):
+        if (tag == 'Model' and h[0] == 'Other'):
+            return 1
+        else:
+            return 0
+
+    def f30(self, h, tag):
+        if (tag == 'OS' and h[0] == 'Org'):
+            return 1
+        else:
+            return 0
+
+
+    def f31(self, h, tag):
+        if (tag == 'Other' and h[0] == 'OS'):
+            return 1
+        else:
+            return 0
+
+    def f32(self, h, tag):
+        if (tag == 'Place' and h[0] == 'Version'):
+            return 1
+        else:
+            return 0
+
+    def f33(self, h, tag):
+        if (tag == 'Price' and h[0] == 'Version'):
+            return 1
+        else:
+            return 0
+
+    def f34(self, h, tag):
+        if (tag == 'Family' and h[0] == 'Date'):
+            return 1
+        else:
+            return 0
+
+    def f35(self, h, tag):
+        if (tag == 'Size' and h[0] == 'Phone'):
+            return 1
+        else:
+            return 0
+
     def evaluate(self, xi, tag):
         feats = []
         for f in self.flist:
@@ -137,8 +290,8 @@ def test(clf, history_list):
 
 if __name__ == "__main__":
     #----- REPLACE THESE PATHS FOR YOUR SYSTEM ---------------------
-    json_file = r"all_data.json"
-    pickle_file = r"all_data.p"
+    json_file = r"C:\home\ananth\research\pesit\nlp\ner\all_data.json"
+    pickle_file = r"C:\home\ananth\research\pesit\nlp\ner\all_data.p"
     # ----------------------------------------------------------------
     
     TRAIN = int(raw_input("Enter 1 for Train, 0 to use pickeled file:  "))
@@ -154,13 +307,11 @@ if __name__ == "__main__":
     (history_list, wmap) = build_history(data, supported_tags)
     print "After build_history"
     func_obj = FeatureFunctions(wmap, supported_tags)
-    # print history_list[10]
-    # print wmap[history_list[10][0]['wn']]
+    
     clf = MyMaxEnt(history_list, func_obj, reg_lambda = 0.001, pic_file = pickle_file)
-    clf.viterbi(len(wmap[0]), 0)
-    # print clf.model
-    # if TRAIN == 1:
-    #     clf.train()
-    # result = test(clf, history_list[-500:])
-    # for r in result:
-    #     print r['word'], r['predicted'], r['expected']
+    print clf.model
+    if TRAIN == 1:
+        clf.train()
+    result = test(clf, history_list[-500:])
+    for r in result:
+        print r['word'], r['predicted'], r['expected']
